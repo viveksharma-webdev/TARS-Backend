@@ -113,6 +113,18 @@ router.delete('/notes/:id', async (req, res) => {
     }
 });
 
+router.get('/notes/fav', async (req, res) => {
+    try {
+        const note = await noteModel.find({isFavorite: true});
+        if (!note) { 
+            return res.status(400).json({message: "Empty"})
+         }
 
+         res.status(200).json(note);
+
+    } catch (error) {
+        
+    }
+})
 
 module.exports = router;
